@@ -12,11 +12,11 @@
   - name: install subversion
     apt: name=subversion state=present
 
-  - name: ensure tomcat is running
-    service: name=tomcat7 state=running
+  - name: copy war to tomcat
+    copy: src=../helloworld.war dest=/var/lib/tomcat7/webapps/ mode=0644
+
+  - name: restart tomcat
+    service: name=tomcat7 state=restarted
 
   - name: wait for tomcat to be running
     wait_for: port={{ http_port }} delay=3
-
-  - name: checkout nexus repository
-    copy: src=../helloworld.war dest=/var/lib/tomcat7/webapps/ mode=0644
