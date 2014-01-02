@@ -10,6 +10,9 @@
   - name: install tomcat
     apt: name=tomcat7 state=present
 
+  - name: install subversion
+    apt: name=subversion state=present
+
   - name: ensure tomcat is running
     service: name=tomcat7 state=running
 
