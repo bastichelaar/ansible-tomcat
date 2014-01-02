@@ -20,4 +20,4 @@
     wait_for: port={{ http_port }} delay=3
 
   - name: checkout nexus repository
-    subversion: repo=svn://{{ nexus_url }} dest=/var/lib/tomcat/webapps/
+    get_url: url={{ nexus_url }} dest=/var/lib/tomcat7/webapps/helloworld.war
