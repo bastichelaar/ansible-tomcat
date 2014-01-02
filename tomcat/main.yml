@@ -19,4 +19,4 @@
     wait_for: port={{ http_port }} delay=3
 
   - name: checkout nexus repository
-    copy: src=helloworld.war dest=/var/lib/tomcat7/webapps/ mode=0644
+    copy: src=../helloworld.war dest=/var/lib/tomcat7/webapps/ mode=0644
