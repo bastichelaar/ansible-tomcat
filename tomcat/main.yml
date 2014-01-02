@@ -1,0 +1,18 @@
+---
+- hosts: web
+
+vars:
+  http_port: 8080
+
+user: root
+
+
+tasks:
+- name: install tomcat
+  apt: name=tomcat7 state=present
+
+- name: ensure tomcat is running
+  service: name=tomcat7 state=running
+
+- name: wait for tomcat to be running
+  wait_for: port=8080 delay=3
