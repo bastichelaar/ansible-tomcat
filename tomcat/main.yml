@@ -15,8 +15,9 @@
   - name: install subversion
     apt: name=subversion state=present
 
+  - name: wait for tomcat to be running
+    wait_for: port={{ http_port }} delay=3
+
   - name: copy war to tomcat
     copy: src=../helloworld.war dest=/var/lib/tomcat7/webapps/ mode=0644
 
-  - name: wait for tomcat to be running
-    wait_for: port={{ http_port }} delay=3
