@@ -2,7 +2,6 @@
 - hosts: web
   vars:
     http_port: 8080
-    nexus_url: "{{ lookup('env','NEXUS_URL') }}"
   user: root
 
 
@@ -20,4 +19,4 @@
     wait_for: port={{ http_port }} delay=3
 
   - name: checkout nexus repository
-    get_url: url={{ nexus_url }} dest=/var/lib/tomcat7/webapps/helloworld.war
+    copy: src=helloworld.war dest=/var/lib/tomcat7/webapps/ mode=0644
