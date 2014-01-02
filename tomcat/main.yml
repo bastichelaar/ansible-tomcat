@@ -2,6 +2,7 @@
 - hosts: web
   vars:
     http_port: 8080
+    nexus_url: "{{ lookup('env','NEXUS_URL') }}"
   user: root
 
 
@@ -13,4 +14,7 @@
     service: name=tomcat7 state=running
 
   - name: wait for tomcat to be running
-    wait_for: port=8080 delay=3
+    wait_for: port={{ http_port }} delay=3
+
+  - name: checkout nexus repository
+    subversion: repo=svn://{{ nexus_url }} dest=/var/lib/tomcat/webapps/
